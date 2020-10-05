@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "app_main.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -45,7 +45,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+osThreadId_t  appMain_handle;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -91,9 +91,14 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
 
+  // https://www.digikey.com/en/maker/projects/getting-started-with-stm32-introduction-to-freertos/ad275395687e4d85935351e16ec575b1
+  const osThreadAttr_t appMain_attributes = {
+	  .name = "appMain",
+	  .priority = (osPriority_t) osPriorityNormal,
+	  .stack_size = 128
+  };
 
-
-
+  appMain_handle = osThreadNew(appMain, NULL, &appMain_attributes);
 
   //osThreadCreate(thread_def, NULL);
   /* USER CODE END 2 */
