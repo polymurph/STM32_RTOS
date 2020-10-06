@@ -45,7 +45,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-osThreadId_t  appMain_handle;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -92,11 +92,27 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   // https://www.digikey.com/en/maker/projects/getting-started-with-stm32-introduction-to-freertos/ad275395687e4d85935351e16ec575b1
+  /*
   const osThreadAttr_t appMain_attributes = {
 	  .name = "appMain",
 	  .priority = (osPriority_t) osPriorityNormal,
 	  .stack_size = 128
   };
+  */
+
+  const osThreadAttr_t appMain_attributes = {
+  	  .name = "appMain",
+  	  .priority = (osPriority_t) osPriorityNormal,
+  	  .stack_size = 128
+  };
+
+  const osThreadAttr_t dummy_attributes = {
+  	  .name = "dummy",
+  	  .priority = (osPriority_t) osPriorityNormal,
+  	  .stack_size = 128
+  };
+
+  dummy_handle = osThreadNew(dummy, NULL, &dummy_attributes);
 
   appMain_handle = osThreadNew(appMain, NULL, &appMain_attributes);
 

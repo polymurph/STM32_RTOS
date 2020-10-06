@@ -1,1 +1,2 @@
-app_main.cpp:7:6:void appMain(void*)	16	static
+app_main.cpp:8:6:void dummy(void*)	16	static
+app_main.cpp:24:6:void appMain(void*)	16	static
